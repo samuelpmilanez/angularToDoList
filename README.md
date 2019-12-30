@@ -1,3 +1,7 @@
+Esse projeto foi desenvolvido como base para o início do estudo na Tecnologia Angular.
+Como base para este trabalho, utilizei o curso ofertado pelo André Baltieri (Balta).
+
+
 # Todo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
