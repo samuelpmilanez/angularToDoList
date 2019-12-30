@@ -1,0 +1,59 @@
+<!--<button (click)="alteraTexto()"> Alterar título: </button>-->
+
+<!-- Para exibir uma variável, eu devo colocar entre "chaves dupals-->
+<h1 class="title animated tada">{{ title }}</h1>
+
+<!--Exibindo a variável "todos" em uma lista não ordenada 
+unordened list (ul li)-->
+<ul class="animated pulse" *ngIf="mode=='list'">
+  <p *ngIf="todos.length==0"><small> Você não possui nenhuma tarefa cadatrada: </small></p>
+  <!--*ngFor cria uma iteração para percorrer a variável "todos",
+  let (declaração de variável no typescript/JS-->
+  <li *ngFor="let todo of todos">
+    {{todo.id}} . {{todo.tarefa}}
+
+    <!--*ngIf é um recurso do Angular que permite criar um condicional dentro da estrutura,
+    no caso, se trata de um botão -->
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)">Concluir</button> 
+    <button *ngIf="todo.done" (click)="markAsUndone(todo)">Refazer</button> 
+    <button (click)="remove(todo)">Remover</button> 
+  </li>
+</ul>
+
+<!--Criando um formulário reativo-->
+
+<!--Observe que o binding com o formGroup foi feito do TS para o HTML
+[] = TS -> HTML 
+-->
+
+<div id="modal" *ngIf="mode=='add'" class="animated pulse">
+  <form [formGroup]="form">
+    <fieldset>
+      <label> Adicionar novo tópico: </label>
+      <input type="text" placeholder=" Título da Tarefa " maxlength="60" formControlName="tarefa">
+      
+      <!--Observe o If que faz o "small" desaparecer caso alguma propriedade (validação)
+      seja inválida. 
+      (form.controls.tarefa.invalid)
+      O "pristine" é um indicador de que o formulário não foi editado ainda
+      (!form.controls.tarefa.pristine) = Caso já tenha sido modificado...
+      -->
+      <small *ngIf="form.controls.tarefa.invalid && !form.controls.tarefa.pristine">   Este campo deve conter entre 3 e 60 caracteres  </small>
+      <button [disabled]="form.controls.tarefa.invalid" (click)="adiciona()">Adicionar</button>
+    </fieldset>
+  </form>
+</div>
+<fieldset *ngIf="mode=='list' && todos.length!=0">
+  <label> Resetar metas diárias: </label>
+  <button (click)="reset()"> RESET </button>
+</fieldset>
+
+<button class="add-button animated fadeInUp button" (click)="alterMode('add')" *ngIf="mode=='list'"> 
+  <i class="fas fa-plus-circle"></i>
+  + Tarefa 
+</button>
+
+<button class="add-button animated fadeInUp button" (click)="alterMode('list')" *ngIf="mode=='add'"> 
+  <i class="fas fa-times"></i>
+  Visualizar Lista
+</button>
