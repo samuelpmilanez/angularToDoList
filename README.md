@@ -1,5 +1,9 @@
+# ToDo List!
+
 Esse projeto foi desenvolvido como base para o início do estudo na Tecnologia Angular.
 Como fonte didática para este trabalho, utilizei o curso ofertado pelo André Baltieri (Balta).
+
+![todo1](https://user-images.githubusercontent.com/43782355/72614480-2539e580-3911-11ea-918b-24f4f2d77ee5.PNG)
 
 
 # Todo
